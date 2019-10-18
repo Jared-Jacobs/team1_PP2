@@ -71,15 +71,11 @@ read
     : 'READ' ID
     ;
 decision
-    : 'IF' comp expr 'THEN' stats+ ('ELSE' stat+)* 'ENDIF'
+    : 'IF' comp expr 'THEN' stat+ ('ELSE' stat+)* 'ENDIF'
     ;
 loop
     : 'WHILE' comp expr 'DO' stat+ 'ENDWHILE'
     ;
-line
-   : number statement CR
-   | statement CR
-   ;
 ID 
    : LETTER (LETTER | [0-9])*
    ;
@@ -87,7 +83,7 @@ STRING
    : '"' (ESC|.)*? '"'
    ;
 ASSIGN
-   : ":="
+   : ':='
    ;
 LETTER 
    : [a-zA-Z]
@@ -119,80 +115,13 @@ EQ
 NEQ
    : '<>'
    ;
-statement
-   : 'PRINT' exprlist
-   | 'IF' expression relop expression 'THEN'? statement
-   | 'GOTO' number
-   | 'INPUT' varlist
-   | 'LET'? vara '=' expression
-   | 'GOSUB' expression
-   | 'RETURN'
-   | 'CLEAR'
-   | 'LIST'
-   | 'RUN'
-   | 'END'
-   ;
-
-exprlist
-   : (STRING | expression) (',' (STRING | expression))*
-   ;
-
-varlist
-   : vara (',' vara)*
-   ;
-
-expression
-   : ('+' | '-' | 'ε')? term (('+' | '-') term)*
-   ;
-
-term
-   : factor (('*' | '/') factor)*
-   ;
-
-factor
-   : 
-   vara
-   | number
-   ;
-
-vara
-    : VAR
-    | STRING
-    ;
-
-number
-   : DIGIT +
-   ;
-
-relop
-   : ('<' ('>' | '=' | 'ε')?)
-   | ('>' ('<' | '=' | 'ε')?)
-   | '='
-   | '+'
-   | '-'
-   ;
-
-
-STRING
-   : '"' ~ ["\r\n]* '"'
-   ;
-
-
-DIGIT
-   : '0' .. '9'
-   ;
-
-
-VAR
-   : 'A' .. 'Z'
-   ;
-
-
 CR
-   : [\r\n]+
+   : [\r\n]* '"'
    ;
-
-
 WS
    : [ \t] -> skip
    ;
+ESC
+   : '//'
+   ;
+  
