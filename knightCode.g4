@@ -71,10 +71,10 @@ read
     : 'READ' ID
     ;
 decision
-    : 'IF' comp expr 'THEN' stat+ ('ELSE' stat+)* 'ENDIF'
+    : 'IF' expr comp expr 'THEN' stat+ ('ELSE' stat+)* 'ENDIF'
     ;
 loop
-    : 'WHILE' comp expr 'DO' stat+ 'ENDWHILE'
+    : 'WHILE' expr comp expr 'DO' stat+ 'ENDWHILE'
     ;
 ID 
    : LETTER (LETTER | [0-9])*

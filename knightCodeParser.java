@@ -802,11 +802,14 @@ public class knightCodeParser extends Parser {
 	}
 
 	public static class DecisionContext extends ParserRuleContext {
+		public List<ExprContext> expr() {
+			return getRuleContexts(ExprContext.class);
+		}
+		public ExprContext expr(int i) {
+			return getRuleContext(ExprContext.class,i);
+		}
 		public CompContext comp() {
 			return getRuleContext(CompContext.class,0);
-		}
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
 		}
 		public List<StatContext> stat() {
 			return getRuleContexts(StatContext.class);
@@ -838,54 +841,56 @@ public class knightCodeParser extends Parser {
 			setState(93);
 			match(T__9);
 			setState(94);
-			comp();
-			setState(95);
 			expr(0);
+			setState(95);
+			comp();
 			setState(96);
+			expr(0);
+			setState(97);
 			match(T__10);
-			setState(98); 
+			setState(99); 
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			do {
 				{
 				{
-				setState(97);
+				setState(98);
 				stat();
 				}
 				}
-				setState(100); 
+				setState(101); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__6) | (1L << T__7) | (1L << T__8) | (1L << T__9) | (1L << T__13) | (1L << ID) | (1L << NUMBER))) != 0) );
-			setState(110);
+			setState(111);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while (_la==T__11) {
 				{
 				{
-				setState(102);
+				setState(103);
 				match(T__11);
-				setState(104); 
+				setState(105); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				do {
 					{
 					{
-					setState(103);
+					setState(104);
 					stat();
 					}
 					}
-					setState(106); 
+					setState(107); 
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 				} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__6) | (1L << T__7) | (1L << T__8) | (1L << T__9) | (1L << T__13) | (1L << ID) | (1L << NUMBER))) != 0) );
 				}
 				}
-				setState(112);
+				setState(113);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(113);
+			setState(114);
 			match(T__12);
 			}
 		}
@@ -901,11 +906,14 @@ public class knightCodeParser extends Parser {
 	}
 
 	public static class LoopContext extends ParserRuleContext {
+		public List<ExprContext> expr() {
+			return getRuleContexts(ExprContext.class);
+		}
+		public ExprContext expr(int i) {
+			return getRuleContext(ExprContext.class,i);
+		}
 		public CompContext comp() {
 			return getRuleContext(CompContext.class,0);
-		}
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
 		}
 		public List<StatContext> stat() {
 			return getRuleContexts(StatContext.class);
@@ -934,29 +942,31 @@ public class knightCodeParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(115);
-			match(T__13);
 			setState(116);
-			comp();
+			match(T__13);
 			setState(117);
 			expr(0);
 			setState(118);
+			comp();
+			setState(119);
+			expr(0);
+			setState(120);
 			match(T__14);
-			setState(120); 
+			setState(122); 
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			do {
 				{
 				{
-				setState(119);
+				setState(121);
 				stat();
 				}
 				}
-				setState(122); 
+				setState(124); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__6) | (1L << T__7) | (1L << T__8) | (1L << T__9) | (1L << T__13) | (1L << ID) | (1L << NUMBER))) != 0) );
-			setState(124);
+			setState(126);
 			match(T__15);
 			}
 		}
@@ -991,37 +1001,38 @@ public class knightCodeParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\"\u0081\4\2\t\2\4"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\"\u0083\4\2\t\2\4"+
 		"\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t"+
 		"\13\4\f\t\f\4\r\t\r\4\16\t\16\3\2\3\2\3\2\3\2\3\2\3\3\3\3\6\3$\n\3\r\3"+
 		"\16\3%\3\4\3\4\3\4\3\5\3\5\3\6\3\6\6\6/\n\6\r\6\16\6\60\3\6\3\6\3\7\3"+
 		"\7\3\7\3\7\3\7\3\7\5\7;\n\7\3\b\3\b\3\b\3\b\3\b\5\bB\n\b\3\t\3\t\3\t\5"+
 		"\tG\n\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t\7\tS\n\t\f\t\16\tV\13"+
-		"\t\3\n\3\n\3\13\3\13\3\13\3\f\3\f\3\f\3\r\3\r\3\r\3\r\3\r\6\re\n\r\r\r"+
-		"\16\rf\3\r\3\r\6\rk\n\r\r\r\16\rl\7\ro\n\r\f\r\16\rr\13\r\3\r\3\r\3\16"+
-		"\3\16\3\16\3\16\3\16\6\16{\n\16\r\16\16\16|\3\16\3\16\3\16\2\3\20\17\2"+
-		"\4\6\b\n\f\16\20\22\24\26\30\32\2\7\3\2\5\6\3\2\30\31\3\2\32\33\3\2\34"+
-		"\37\3\2\23\24\2\u0083\2\34\3\2\2\2\4!\3\2\2\2\6\'\3\2\2\2\b*\3\2\2\2\n"+
-		",\3\2\2\2\f:\3\2\2\2\16<\3\2\2\2\20F\3\2\2\2\22W\3\2\2\2\24Y\3\2\2\2\26"+
-		"\\\3\2\2\2\30_\3\2\2\2\32u\3\2\2\2\34\35\7\3\2\2\35\36\7\23\2\2\36\37"+
-		"\5\4\3\2\37 \5\n\6\2 \3\3\2\2\2!#\7\4\2\2\"$\5\6\4\2#\"\3\2\2\2$%\3\2"+
-		"\2\2%#\3\2\2\2%&\3\2\2\2&\5\3\2\2\2\'(\5\b\5\2()\7\23\2\2)\7\3\2\2\2*"+
-		"+\t\2\2\2+\t\3\2\2\2,.\7\7\2\2-/\5\f\7\2.-\3\2\2\2/\60\3\2\2\2\60.\3\2"+
-		"\2\2\60\61\3\2\2\2\61\62\3\2\2\2\62\63\7\b\2\2\63\13\3\2\2\2\64;\5\16"+
-		"\b\2\65;\5\20\t\2\66;\5\24\13\2\67;\5\26\f\28;\5\30\r\29;\5\32\16\2:\64"+
-		"\3\2\2\2:\65\3\2\2\2:\66\3\2\2\2:\67\3\2\2\2:8\3\2\2\2:9\3\2\2\2;\r\3"+
-		"\2\2\2<=\7\t\2\2=>\5\20\t\2>A\7\25\2\2?B\5\20\t\2@B\7\24\2\2A?\3\2\2\2"+
-		"A@\3\2\2\2B\17\3\2\2\2CD\b\t\1\2DG\7\27\2\2EG\7\23\2\2FC\3\2\2\2FE\3\2"+
-		"\2\2GT\3\2\2\2HI\f\7\2\2IJ\t\3\2\2JS\5\20\t\bKL\f\6\2\2LM\t\4\2\2MS\5"+
-		"\20\t\7NO\f\5\2\2OP\5\22\n\2PQ\5\20\t\6QS\3\2\2\2RH\3\2\2\2RK\3\2\2\2"+
-		"RN\3\2\2\2SV\3\2\2\2TR\3\2\2\2TU\3\2\2\2U\21\3\2\2\2VT\3\2\2\2WX\t\5\2"+
-		"\2X\23\3\2\2\2YZ\7\n\2\2Z[\t\6\2\2[\25\3\2\2\2\\]\7\13\2\2]^\7\23\2\2"+
-		"^\27\3\2\2\2_`\7\f\2\2`a\5\22\n\2ab\5\20\t\2bd\7\r\2\2ce\5\f\7\2dc\3\2"+
-		"\2\2ef\3\2\2\2fd\3\2\2\2fg\3\2\2\2gp\3\2\2\2hj\7\16\2\2ik\5\f\7\2ji\3"+
-		"\2\2\2kl\3\2\2\2lj\3\2\2\2lm\3\2\2\2mo\3\2\2\2nh\3\2\2\2or\3\2\2\2pn\3"+
-		"\2\2\2pq\3\2\2\2qs\3\2\2\2rp\3\2\2\2st\7\17\2\2t\31\3\2\2\2uv\7\20\2\2"+
-		"vw\5\22\n\2wx\5\20\t\2xz\7\21\2\2y{\5\f\7\2zy\3\2\2\2{|\3\2\2\2|z\3\2"+
-		"\2\2|}\3\2\2\2}~\3\2\2\2~\177\7\22\2\2\177\33\3\2\2\2\r%\60:AFRTflp|";
+		"\t\3\n\3\n\3\13\3\13\3\13\3\f\3\f\3\f\3\r\3\r\3\r\3\r\3\r\3\r\6\rf\n\r"+
+		"\r\r\16\rg\3\r\3\r\6\rl\n\r\r\r\16\rm\7\rp\n\r\f\r\16\rs\13\r\3\r\3\r"+
+		"\3\16\3\16\3\16\3\16\3\16\3\16\6\16}\n\16\r\16\16\16~\3\16\3\16\3\16\2"+
+		"\3\20\17\2\4\6\b\n\f\16\20\22\24\26\30\32\2\7\3\2\5\6\3\2\30\31\3\2\32"+
+		"\33\3\2\34\37\3\2\23\24\2\u0085\2\34\3\2\2\2\4!\3\2\2\2\6\'\3\2\2\2\b"+
+		"*\3\2\2\2\n,\3\2\2\2\f:\3\2\2\2\16<\3\2\2\2\20F\3\2\2\2\22W\3\2\2\2\24"+
+		"Y\3\2\2\2\26\\\3\2\2\2\30_\3\2\2\2\32v\3\2\2\2\34\35\7\3\2\2\35\36\7\23"+
+		"\2\2\36\37\5\4\3\2\37 \5\n\6\2 \3\3\2\2\2!#\7\4\2\2\"$\5\6\4\2#\"\3\2"+
+		"\2\2$%\3\2\2\2%#\3\2\2\2%&\3\2\2\2&\5\3\2\2\2\'(\5\b\5\2()\7\23\2\2)\7"+
+		"\3\2\2\2*+\t\2\2\2+\t\3\2\2\2,.\7\7\2\2-/\5\f\7\2.-\3\2\2\2/\60\3\2\2"+
+		"\2\60.\3\2\2\2\60\61\3\2\2\2\61\62\3\2\2\2\62\63\7\b\2\2\63\13\3\2\2\2"+
+		"\64;\5\16\b\2\65;\5\20\t\2\66;\5\24\13\2\67;\5\26\f\28;\5\30\r\29;\5\32"+
+		"\16\2:\64\3\2\2\2:\65\3\2\2\2:\66\3\2\2\2:\67\3\2\2\2:8\3\2\2\2:9\3\2"+
+		"\2\2;\r\3\2\2\2<=\7\t\2\2=>\5\20\t\2>A\7\25\2\2?B\5\20\t\2@B\7\24\2\2"+
+		"A?\3\2\2\2A@\3\2\2\2B\17\3\2\2\2CD\b\t\1\2DG\7\27\2\2EG\7\23\2\2FC\3\2"+
+		"\2\2FE\3\2\2\2GT\3\2\2\2HI\f\7\2\2IJ\t\3\2\2JS\5\20\t\bKL\f\6\2\2LM\t"+
+		"\4\2\2MS\5\20\t\7NO\f\5\2\2OP\5\22\n\2PQ\5\20\t\6QS\3\2\2\2RH\3\2\2\2"+
+		"RK\3\2\2\2RN\3\2\2\2SV\3\2\2\2TR\3\2\2\2TU\3\2\2\2U\21\3\2\2\2VT\3\2\2"+
+		"\2WX\t\5\2\2X\23\3\2\2\2YZ\7\n\2\2Z[\t\6\2\2[\25\3\2\2\2\\]\7\13\2\2]"+
+		"^\7\23\2\2^\27\3\2\2\2_`\7\f\2\2`a\5\20\t\2ab\5\22\n\2bc\5\20\t\2ce\7"+
+		"\r\2\2df\5\f\7\2ed\3\2\2\2fg\3\2\2\2ge\3\2\2\2gh\3\2\2\2hq\3\2\2\2ik\7"+
+		"\16\2\2jl\5\f\7\2kj\3\2\2\2lm\3\2\2\2mk\3\2\2\2mn\3\2\2\2np\3\2\2\2oi"+
+		"\3\2\2\2ps\3\2\2\2qo\3\2\2\2qr\3\2\2\2rt\3\2\2\2sq\3\2\2\2tu\7\17\2\2"+
+		"u\31\3\2\2\2vw\7\20\2\2wx\5\20\t\2xy\5\22\n\2yz\5\20\t\2z|\7\21\2\2{}"+
+		"\5\f\7\2|{\3\2\2\2}~\3\2\2\2~|\3\2\2\2~\177\3\2\2\2\177\u0080\3\2\2\2"+
+		"\u0080\u0081\7\22\2\2\u0081\33\3\2\2\2\r%\60:AFRTgmq~";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {
