@@ -9,31 +9,25 @@ import org.antlr.v4.runtime.tree.TerminalNode;
  * which can be extended to create a listener which only needs to handle a subset
  * of the available methods.
  */
-public class kcListener extends knightCodeBaseListener {
+public class knightCodeBaseListener implements knightCodeListener {
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterFile(knightCodeParser.FileContext ctx) {
-		System.out.println(ctx.getText());
-	 }
+	@Override public void enterFile(knightCodeParser.FileContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitFile(knightCodeParser.FileContext ctx) { 
-		System.out.println(ctx.getText());
-	}
+	@Override public void exitFile(knightCodeParser.FileContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterDeclare(knightCodeParser.DeclareContext ctx) {
-		System.out.println(ctx.getText());
-	 }
+	@Override public void enterDeclare(knightCodeParser.DeclareContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
