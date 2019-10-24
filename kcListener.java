@@ -39,162 +39,216 @@ public class kcListener extends knightCodeBaseListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitDeclare(knightCodeParser.DeclareContext ctx) { }
+	@Override public void exitDeclare(knightCodeParser.DeclareContext ctx) { 
+		System.out.println(ctx.getText());
+	}
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterVariable(knightCodeParser.VariableContext ctx) { }
+	@Override public void enterVariable(knightCodeParser.VariableContext ctx) { 
+		System.out.println(ctx.getText());
+	}
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitVariable(knightCodeParser.VariableContext ctx) { }
+	@Override public void exitVariable(knightCodeParser.VariableContext ctx) { 
+		System.out.println(ctx.getText());
+	}
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterType(knightCodeParser.TypeContext ctx) { }
+	@Override public void enterType(knightCodeParser.TypeContext ctx) { 
+		System.out.println(ctx.getText());
+	}
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitType(knightCodeParser.TypeContext ctx) { }
+	@Override public void exitType(knightCodeParser.TypeContext ctx) { 
+		System.out.println(ctx.getText());
+	}
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterBody(knightCodeParser.BodyContext ctx) { }
+	@Override public void enterBody(knightCodeParser.BodyContext ctx) { 
+		System.out.println(ctx.getText());
+	}
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitBody(knightCodeParser.BodyContext ctx) { }
+	@Override public void exitBody(knightCodeParser.BodyContext ctx) { 
+		System.out.println(ctx.getText());
+	}
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterStat(knightCodeParser.StatContext ctx) { }
+	@Override public void enterStat(knightCodeParser.StatContext ctx) { 
+		System.out.println(ctx.getText());
+	}
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitStat(knightCodeParser.StatContext ctx) { }
+	@Override public void exitStat(knightCodeParser.StatContext ctx) { 
+		System.out.println(ctx.getText());
+	}
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterSetvar(knightCodeParser.SetvarContext ctx) { }
+	@Override public void enterSetvar(knightCodeParser.SetvarContext ctx) { 
+		System.out.println(ctx.getText());
+	}
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitSetvar(knightCodeParser.SetvarContext ctx) { }
+	@Override public void exitSetvar(knightCodeParser.SetvarContext ctx) { 
+		System.out.println(ctx.getText());
+	}
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterExpr(knightCodeParser.ExprContext ctx) { }
+	@Override public void enterExpr(knightCodeParser.ExprContext ctx) {
+		System.out.println(ctx.getText());
+	}
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitExpr(knightCodeParser.ExprContext ctx) { }
+	@Override public void exitExpr(knightCodeParser.ExprContext ctx) { 
+		System.out.println(ctx.getText());
+	}
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterComp(knightCodeParser.CompContext ctx) { }
+	@Override public void enterComp(knightCodeParser.CompContext ctx) { 
+		System.out.println(ctx.getText());
+	}
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitComp(knightCodeParser.CompContext ctx) { }
+	@Override public void exitComp(knightCodeParser.CompContext ctx) { 
+		System.out.println(ctx.getText());
+	}
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterPrint(knightCodeParser.PrintContext ctx) { }
+	@Override public void enterPrint(knightCodeParser.PrintContext ctx) { 
+		System.out.println(ctx.getText());
+	}
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitPrint(knightCodeParser.PrintContext ctx) { }
+	@Override public void exitPrint(knightCodeParser.PrintContext ctx) { 
+		System.out.println(ctx.getText());
+	}
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterRead(knightCodeParser.ReadContext ctx) { }
+	@Override public void enterRead(knightCodeParser.ReadContext ctx) { 
+		System.out.println(ctx.getText());
+	}
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitRead(knightCodeParser.ReadContext ctx) { }
+	@Override public void exitRead(knightCodeParser.ReadContext ctx) { 
+		System.out.println(ctx.getText());
+	}
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterDecision(knightCodeParser.DecisionContext ctx) { }
+	@Override public void enterDecision(knightCodeParser.DecisionContext ctx) { 
+		System.out.println(ctx.getText());
+	}
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitDecision(knightCodeParser.DecisionContext ctx) { }
+	@Override public void exitDecision(knightCodeParser.DecisionContext ctx) { 
+		System.out.println(ctx.getText());
+	}
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterLoop(knightCodeParser.LoopContext ctx) { }
+	@Override public void enterLoop(knightCodeParser.LoopContext ctx) { 
+		System.out.println(ctx.getText());
+	}
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitLoop(knightCodeParser.LoopContext ctx) { }
+	@Override public void exitLoop(knightCodeParser.LoopContext ctx) { 
+		System.out.println(ctx.getText());
+	}
 
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterEveryRule(ParserRuleContext ctx) { }
+	@Override public void enterEveryRule(ParserRuleContext ctx) { 
+		System.out.println(ctx.getText());
+	}
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitEveryRule(ParserRuleContext ctx) { }
+	@Override public void exitEveryRule(ParserRuleContext ctx) { 
+		System.out.println(ctx.getText());
+	}
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void visitTerminal(TerminalNode node) { }
+	@Override public void visitTerminal(TerminalNode node) { 
+		System.out.println(ctx.getText());
+	}
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void visitErrorNode(ErrorNode node) { }
+	@Override public void visitErrorNode(ErrorNode node) { 
+		System.out.println(ctx.getText());
+	}
 }
