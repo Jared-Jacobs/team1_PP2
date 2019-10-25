@@ -8,4 +8,8 @@ grammar file. Compiled the grammar file.
 
 10/16/19 | Jared Jacobs | 2.5  Hours | Started working on the skeleton of errorListener and kcListener
 
-10/22/19 | Jared Jacobs | 1 Hour | 
+10/22/19 | Jared Jacobs | 1 Hour |
+
+10/23/19 | Joshua Coffey | 3 Hours | Got errorListener working and started filling in kcListener
+
+10/25/19 | Joshua Coffey | 4 Hours | Continued work on kcListener, got everything but the if's and while's working properly 
