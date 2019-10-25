@@ -52,11 +52,11 @@ stat
     | loop
     ;
 setvar
-    : 'SET' expr ASSIGN (expr | STRING)
+    : 'SET' ID ASSIGN (expr | STRING)
     ;
 expr
-    : expr (MUL | DIV) expr
-    | expr (ADD | SUB) expr
+    : expr muldiv expr
+    | expr addsub expr
     | expr comp expr 
     | NUMBER
     | ID
@@ -64,6 +64,12 @@ expr
 comp
     : GT | LT | EQ | NEQ
     ;
+muldiv
+    : MUL | DIV
+    ;
+addsub
+    : ADD | SUB
+    ; 
 print
     : 'PRINT' (STRING | ID)
     ;
@@ -92,7 +98,7 @@ NUMBER
    : [0-9]+
    ;
 MUL 
-   : '"'
+   : '*'
    ;
 DIV
    : '/'

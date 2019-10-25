@@ -42,7 +42,7 @@ public class knightCodeLexer extends Lexer {
 		return new String[] {
 			null, "'PROGRAM'", "'DECLARE'", "'INTEGER'", "'STRING'", "'BEGIN'", "'END'", 
 			"'SET'", "'PRINT'", "'READ'", "'IF'", "'THEN'", "'ELSE'", "'ENDIF'", 
-			"'WHILE'", "'DO'", "'ENDWHILE'", null, null, "':='", null, null, "'\"'", 
+			"'WHILE'", "'DO'", "'ENDWHILE'", null, null, "':='", null, null, "'*'", 
 			"'/'", "'+'", "'-'", "'>'", "'<'", "'='", "'<>'", null, null, "'//'"
 		};
 	}
@@ -169,7 +169,7 @@ public class knightCodeLexer extends Lexer {
 		"\2\2\u00af\u00ad\3\2\2\2\u00b0\u00b1\7$\2\2\u00b1&\3\2\2\2\u00b2\u00b3"+
 		"\7<\2\2\u00b3\u00b4\7?\2\2\u00b4(\3\2\2\2\u00b5\u00b6\t\3\2\2\u00b6*\3"+
 		"\2\2\2\u00b7\u00b9\t\2\2\2\u00b8\u00b7\3\2\2\2\u00b9\u00ba\3\2\2\2\u00ba"+
-		"\u00b8\3\2\2\2\u00ba\u00bb\3\2\2\2\u00bb,\3\2\2\2\u00bc\u00bd\7$\2\2\u00bd"+
+		"\u00b8\3\2\2\2\u00ba\u00bb\3\2\2\2\u00bb,\3\2\2\2\u00bc\u00bd\7,\2\2\u00bd"+
 		".\3\2\2\2\u00be\u00bf\7\61\2\2\u00bf\60\3\2\2\2\u00c0\u00c1\7-\2\2\u00c1"+
 		"\62\3\2\2\2\u00c2\u00c3\7/\2\2\u00c3\64\3\2\2\2\u00c4\u00c5\7@\2\2\u00c5"+
 		"\66\3\2\2\2\u00c6\u00c7\7>\2\2\u00c78\3\2\2\2\u00c8\u00c9\7?\2\2\u00c9"+

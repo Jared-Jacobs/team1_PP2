@@ -97,6 +97,26 @@ public interface knightCodeListener extends ParseTreeListener {
 	 */
 	void exitComp(knightCodeParser.CompContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link knightCodeParser#muldiv}.
+	 * @param ctx the parse tree
+	 */
+	void enterMuldiv(knightCodeParser.MuldivContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link knightCodeParser#muldiv}.
+	 * @param ctx the parse tree
+	 */
+	void exitMuldiv(knightCodeParser.MuldivContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link knightCodeParser#addsub}.
+	 * @param ctx the parse tree
+	 */
+	void enterAddsub(knightCodeParser.AddsubContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link knightCodeParser#addsub}.
+	 * @param ctx the parse tree
+	 */
+	void exitAddsub(knightCodeParser.AddsubContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link knightCodeParser#print}.
 	 * @param ctx the parse tree
 	 */
