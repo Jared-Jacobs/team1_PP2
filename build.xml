@@ -1,0 +1,89 @@
+<?xml version = "1.0"?>
+<project name= "team1_PP2" default="usage" basedir=".">
+
+<componentdef classname="org.dogsplayingpoker.ant.PropertyHelpers.ColorPropertyEvaluator"
+              name="colorpropertyevaluator"
+              classpath="/usr/local/lib/ant-colorizor.jar" />
+<propertyhelper>
+  <colorpropertyevaluator />
+</propertyhelper>
+
+
+        <target name="usage">
+
+                <echo>${color: blue, bold}'ant build-grammar': Receives the .g4 file  and builds .java files to parse the grammar${color:reset}</echo>
+                <echo>${color: purple, bold}'ant compile-grammar': Compiles all the .java files${color:reset}</echo>
+                <echo>${color: red, bold}'ant clean-grammar': Cleans and deletes all build files in the dir${color:reset}</echo>
+                <echo>${color: green, bold}'ant clean': Cleans all .class files in the directory${color:reset}</echo>
+                <echo>${color: cyan, bold}'ant grun': Test the compiler${color:reset}</echo>
+
+        </target>
+
+        <target name="build-grammar" depends="clean-grammar">
+                <echo>Generating .java files</echo>
+
+                <java classname="org.antlr.v4.Tool">
+                        <arg value="-o" />
+                        <arg value="build/src" />
+                        <arg value="knightCode.g4" />
+
+                        <classpath>
+                                <pathelement location="/usr/local/lib/antlr-4.7.2-complete.jar" />
+                        </classpath>
+
+                </java>
+
+        </target>
+
+        <target name="compile-grammar">
+                <echo>Compiling the .java source files</echo>
+                <javac includeantruntime="false" classpath="/usr/local/lib/antlr-4.7.2-complete.jar" srcdir="./build/src" destdir="./build/bin" />
+        </target>
+
+        <target name="clean-grammar">
+                <echo>Cleaning all files in the directory with .tokens .interp .java</echo>
+        <delete>
+                <fileset dir="." includes="**.*~"/>
+                <fileset dir="." includes="**/knightCode*.java"/>
+                <fileset dir="." includes="**/*.interp"/>
+                <fileset dir="." includes="**/*.tokens"/>
+        </delete>
+
+        </target>
+
+        <target name="clean">
+                <echo>Cleaning all .class files in directory</echo>
+        <delete>
+                <fileset dir="." includes="**/*.class"/>
+        </delete>
+
+        </target>
+    <target name="clean">
+                <echo>Cleaning all .class files in directory</echo>
+        <delete>
+                <fileset dir="." includes="**/*.class"/>
+        </delete>
+
+        </target>
+
+
+        <target name="grun">
+                <echo>Running the test rig</echo>
+                <java classname = "org.antlr.v4.gui.TestRig">
+                        <arg value="knightCode" />
+                        <arg value="program" />
+                        <arg value="-tokens" />
+                        <arg value="${program}" />
+                        <classpath>
+                                <pathelement location="build/bin" />
+                                <pathelement location="/usr/local/lib/antlr-4.7.2-complete.jar" />
+                        </classpath>
+                </java>
+        </target>
+
+
+</project>
+
+        
+        
+
