@@ -1,3 +1,14 @@
+/**
+* Description of this class.
+* @author Jared Jacobs
+* @author Josh Coffey
+* @author Stephen Love
+* @version 1.0
+* Programming Project Two
+* CS322 - Compiler Construction
+* Fall 2019
+**/
+
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.*;
 import java.io.FileInputStream;
