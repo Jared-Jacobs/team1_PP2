@@ -37,7 +37,7 @@
 
         <target name="compile-grammar">
                 <echo>Compiling the .java source files</echo>
-                <javac includeantruntime="false" classpath="/usr/local/lib/antlr-4.7.2-complete.jar" srcdir="./build/src" destdir="." />
+                <javac includeantruntime="false" classpath="/usr/local/lib/antlr-4.7.2-complete.jar" srcdir="." destdir="." />
         </target>
 
         <target name="clean-grammar">
