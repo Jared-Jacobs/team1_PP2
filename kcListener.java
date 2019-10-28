@@ -4,6 +4,8 @@ import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.TerminalNode;
 import java.util.ArrayList;
+import java.util.regex.*;
+import java.util.HashMap;
 
 /**
  * This class provides an empty implementation of {@link knightCodeListener},
@@ -15,7 +17,8 @@ public class kcListener extends knightCodeBaseListener {
 	
 	private String fileName;
 	private String nodeText;
-	private ArrayList<String> processedCode;
+	private ArrayList<String> outputCode;
+	private HashMap<String, String> symbolTable;
 	
 	
 	/**
@@ -32,15 +35,39 @@ public class kcListener extends knightCodeBaseListener {
 	public kcListener(String fName){
 		fileName = fName;
 		processedCode = new ArrayList<String>();
+		symbolTable = new HashMap<String, String>();
 	}
+	
+	/**
+	 * Getter for our ArrayList of completed code
+	 */
+	public ArrayList<String> getOutputCode() {
+		return outputCode;
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterEveryRule(ParserRuleContext ctx) { 
+		nodeText = ctx.getText();
+	}
+	
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void enterFile(knightCodeParser.FileContext ctx) {
-		String ctxText = ctx.getText();
-		System.out.println("public class " + ctxText.substring(7, ctxText.indexOf("DECLARE")) + "{");
+		outputCode.add("import java.util.Scanner;");
+		
+		while (match.find()) {
+			String tmp = fileName.replace(".java", "");
+			outputCode.add("public class " + tmp);
+			outputCode.add("{");
+			outputCode.add("Scanner scan = new Scanner(System.in);")
+		}
 	 }
 	/**
 	 * {@inheritDoc}
@@ -48,7 +75,7 @@ public class kcListener extends knightCodeBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitFile(knightCodeParser.FileContext ctx) { 
-		System.out.println("}");
+		outputCode.add("}");
 	}
 	/**
 	 * {@inheritDoc}
@@ -56,7 +83,6 @@ public class kcListener extends knightCodeBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void enterDeclare(knightCodeParser.DeclareContext ctx) {
-		//System.out.println(ctx.getText());
 	 }
 	/**
 	 * {@inheritDoc}
@@ -72,7 +98,16 @@ public class kcListener extends knightCodeBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void enterVariable(knightCodeParser.VariableContext ctx) { 
-		//System.out.println(ctx.getText());
+		String tmp = nodeText;
+		String type = tmp.substring(0, 3); //since the variable declaration will always start with INTEGER or STRING,
+										   //this will always give either INT or STR
+		String id;
+		if (tmp.startsWith("INTEGER"))
+			id = tmp.substring(7); // number of letters in "INTEGER"
+		else
+			id = tmp.substring(6); // number of letters in "STRING"
+		
+		symbolTable.put(id, type);
 	}
 	/**
 	 * {@inheritDoc}
@@ -80,14 +115,14 @@ public class kcListener extends knightCodeBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitVariable(knightCodeParser.VariableContext ctx) { 
-		String id = ctx.getText();
-		if (id.contains("INTEGER")) {
-			id = id.replaceAll("INTEGER", " ");
-		} else if (id.contains("STRING")) {
-			id = id.replaceAll("STRING", " ");
+		String tmp = nodeText;
+		if (tmp.contains("INTEGER")) {
+			tmp = tmp.replaceAll("INTEGER", "");
+		} else if (tmp.contains("STRING")) {
+			tmp = tmp.replaceAll("STRING", "");
 		}
-		id += ";";
-		System.out.println(id);
+		tmp += ";";
+		outputCode.add(tmp);
 	}
 	/**
 	 * {@inheritDoc}
@@ -95,12 +130,14 @@ public class kcListener extends knightCodeBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void enterType(knightCodeParser.TypeContext ctx) { 
-		String type = ctx.getText();
-		if (type.equals("INTEGER")) {
-			System.out.print("int");
-		} else if (type.equals("STRING")) {
-			System.out.print("String");
+		String tmp = nodeText;
+		if(tmp.equals("INTEGER")) {
+			tmp = "int";
 		}
+		if(tmp.equals("STRING")) {
+			tmp = "String";
+		}
+		outputCode.add(tmp);
 	}
 	/**
 	 * {@inheritDoc}
@@ -116,7 +153,8 @@ public class kcListener extends knightCodeBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void enterBody(knightCodeParser.BodyContext ctx) { 
-		System.out.println("public static void main(String[] args) {");
+		outputCode.add("public static void main(String[] args)");
+		outputCode.add("{")
 	}
 	/**
 	 * {@inheritDoc}
@@ -124,7 +162,7 @@ public class kcListener extends knightCodeBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitBody(knightCodeParser.BodyContext ctx) { 
-		System.out.println("}");
+		outputCode.add("}");
 	}
 	/**
 	 * {@inheritDoc}
@@ -140,9 +178,8 @@ public class kcListener extends knightCodeBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitStat(knightCodeParser.StatContext ctx) { 
-		String text = ctx.getText();
-		if(!text.contains("IF") && !text.contains("WHILE"))
-			System.out.println(";");
+		if(!nodeText.contains("IF") && !nodeText.contains("WHILE"))
+			outputCode.add(";");
 	}
 	/**
 	 * {@inheritDoc}
@@ -150,14 +187,10 @@ public class kcListener extends knightCodeBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void enterSetvar(knightCodeParser.SetvarContext ctx) { 
-		String text = ctx.getText();
-		text = text.replaceFirst("SET", "");
-		text = text.replaceAll(":", "");
-		if(!text.contains("\""))
-			System.out.print(text.substring(0, text.indexOf("=")+1));
-		else
-			System.out.print(text);
-
+		String tmp = nodeText;
+		tmp = tmp.replaceFirst("SET", "");
+		tmp = tmp.replaceFirst(":", "");
+		outputText.add(tmp);
 	}
 	/**
 	 * {@inheritDoc}
@@ -173,7 +206,7 @@ public class kcListener extends knightCodeBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void enterExpr(knightCodeParser.ExprContext ctx) {
-		String text = ctx.getText();
+		/*String text = ctx.getText();
 		boolean print = true;
 
 		if(ctx.getParent().getText().startsWith("IF")) {
@@ -206,7 +239,7 @@ public class kcListener extends knightCodeBaseListener {
 		if(print)
 			System.out.print(text);
 
-		//System.out.println("Parent of " + ctx.getText() + ": " + ctx.getParent().getText());
+		//System.out.println("Parent of " + ctx.getText() + ": " + ctx.getParent().getText());*/
 	}
 	/**
 	 * {@inheritDoc}
@@ -248,12 +281,12 @@ public class kcListener extends knightCodeBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void enterComp(knightCodeParser.CompContext ctx) { 
-		String text = ctx.getText();
+		/*String text = ctx.getText();
 		if(text.equals("<>"))
 			text = "!=";
 		if(text.equals("="))
 			text = "==";
-		System.out.print(text);
+		System.out.print(text);*/
 	}
 	/**
 	 * {@inheritDoc}
@@ -263,49 +296,16 @@ public class kcListener extends knightCodeBaseListener {
 	@Override public void exitComp(knightCodeParser.CompContext ctx) { 
 		//System.out.println(ctx.getText());
 	}
-        /**
-         * {@inheritDoc}
-         *
-         * <p>The default implementation does nothing.</p>
-         */
-        @Override public void enterMuldiv(knightCodeParser.MuldivContext ctx) {
-                String text = ctx.getText();
-                System.out.print(text);
-        }
-        /**
-         * {@inheritDoc}
-         *
-         * <p>The default implementation does nothing.</p>
-         */
-        @Override public void exitMuldiv(knightCodeParser.MuldivContext ctx) {
-                //System.out.println(ctx.getText());
-        }
-        /**
-         * {@inheritDoc}
-         *
-         * <p>The default implementation does nothing.</p>
-         */
-        @Override public void enterAddsub(knightCodeParser.AddsubContext ctx) {
-                String text = ctx.getText();
-                System.out.print(text);
-        }
-        /**
-         * {@inheritDoc}
-         *
-         * <p>The default implementation does nothing.</p>
-         */
-        @Override public void exitAddsub(knightCodeParser.AddsubContext ctx) {
-                //System.out.println(ctx.getText());
-        }
+    
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void enterPrint(knightCodeParser.PrintContext ctx) { 
-		String text = ctx.getText();
-		text = text.replaceFirst("PRINT", "");
-		System.out.print("System.out.println(" + text + ")");
+		String tmp = nodeText;
+		tmp = tmp.replaceFirst("PRINT", "");
+		outputCode.add("System.out.println(" + tmp + ")");
 	}
 	/**
 	 * {@inheritDoc}
@@ -321,7 +321,14 @@ public class kcListener extends knightCodeBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void enterRead(knightCodeParser.ReadContext ctx) { 
-		//System.out.println(ctx.getText());
+		String tmp = nodeText;
+		tmp = tmp.replace("READ", "");
+		tmpType = symbolTable.get(tmp);
+		if(tmpType.equals("STR")) {
+			outputCode.add(tmp + " = scan.nextLine()");
+		} else if (tmpType.equals("INT")){
+			outputCode.add(tmp + "= scan.nextInt()");
+		}
 	}
 	/**
 	 * {@inheritDoc}
@@ -329,7 +336,7 @@ public class kcListener extends knightCodeBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitRead(knightCodeParser.ReadContext ctx) { 
-		//System.out.println(ctx.getText());
+
 	}
 	/**
 	 * {@inheritDoc}
@@ -337,7 +344,14 @@ public class kcListener extends knightCodeBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void enterDecision(knightCodeParser.DecisionContext ctx) { 
-		//System.out.print("if(");
+		String tmp = nodeText;
+		tmp = tmp.replace("IF", "if(");
+		tmp = tmp.replace("THEN", ")");
+		tmp = tmp.replace("=", "==");
+		tmp = tmp.replace("<>", "!=");
+		
+		outputCode.add(tmp);
+		outputCode.add("{");
 	}
 	/**
 	 * {@inheritDoc}
@@ -345,6 +359,16 @@ public class kcListener extends knightCodeBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitDecision(knightCodeParser.DecisionContext ctx) { 
+		outputCode.add("}");
+	}
+	
+	@Override public void enterIndecision(knightCodeParser.IndecisionContext ctx) {
+		outputCode.add("}");
+		outputCode.add("else");
+		outputCode.add("{");
+	}
+	
+	@Override public void exitIndecision(knightCodeParser.IndecisionContext ctx) {
 		
 	}
 	/**
@@ -353,7 +377,15 @@ public class kcListener extends knightCodeBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void enterLoop(knightCodeParser.LoopContext ctx) { 
-		//System.out.println(ctx.getText());
+		String tmp = nodeText;
+		
+		tmp = tmp.replace("WHILE", "while(");
+		tmp = tmp.replace("DO", ")");
+		tmp = tmp.replace("=", "==");
+		tmp = tmp.replace("<>", "!=");
+		
+		outputCode.add(tmp);
+		outputCode.add("{");
 	}
 	/**
 	 * {@inheritDoc}
@@ -361,17 +393,9 @@ public class kcListener extends knightCodeBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitLoop(knightCodeParser.LoopContext ctx) { 
-		//System.out.println(ctx.getText());
+		outputCode.add("}");
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterEveryRule(ParserRuleContext ctx) { 
-		//System.out.println(ctx.getText());
-	}
 	/**
 	 * {@inheritDoc}
 	 *

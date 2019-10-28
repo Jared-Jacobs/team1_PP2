@@ -77,8 +77,11 @@ read
     : 'READ' ID
     ;
 decision
-    : 'IF' expr comp expr 'THEN' stat+ ('ELSE' stat+)* 'ENDIF'
+    : 'IF' expr comp expr 'THEN' stat+ indecision* 'ENDIF'
     ;
+indecision
+	: 'ELSE' stat+
+	;
 loop
     : 'WHILE' expr comp expr 'DO' stat+ 'ENDWHILE'
     ;
