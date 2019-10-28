@@ -2,26 +2,16 @@ PROGRAM kcExample2
 
 DECLARE
         INTEGER x
-        INTEGER y
 
 BEGIN
-        SET x:=20
-        SET y:=10
-        IF x > y THEN 
-		PRINT x 
-	ELSE 
-		PRINT y
-	ENDIF
-
-	IF x > y THEN
-		WHILE x > y DO
-			SET y:=y+1
-		ENDWHILE
-	ENDIF
-
-	IF x > y THEN
-		PRINT x
+        PRINT "Enter a number 1-10: "
+	READ x
+        IF x > 5 THEN 
+		PRINT "Your number is greater than 5" 
+	ELSE IF x < 5 THEN
+		PRINT "Your number is less than 5"
 	ELSE
-		PRINT y
+		PRINT "Your number is 5"
+	ENDIF
 	ENDIF
 END
