@@ -3,6 +3,7 @@
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.TerminalNode;
+import java.util.ArrayList;
 
 /**
  * This class provides an empty implementation of {@link knightCodeListener},
@@ -12,6 +13,26 @@ import org.antlr.v4.runtime.tree.TerminalNode;
 public class kcListener extends knightCodeBaseListener {
 
 	
+	private String fileName;
+	private String nodeText;
+	private ArrayList<String> processedCode;
+	
+	
+	/**
+	 * Default constructor, throws exception
+	 */
+	public kcListener() throws IllegalArgumentException{
+		throw new IllegalArgumentException("You must specify an output file");
+	}
+
+	/**
+	 * Constructor, allows for passing of filename
+	 *
+	 */
+	public kcListener(String fName){
+		fileName = fName;
+		processedCode = new ArrayList<String>();
+	}
 	/**
 	 * {@inheritDoc}
 	 *
@@ -155,33 +176,37 @@ public class kcListener extends knightCodeBaseListener {
 		String text = ctx.getText();
 		boolean print = true;
 
+		if(ctx.getParent().getText().startsWith("IF")) {
+			System.out.print("if(");
+		}
+
 		if(text.contains("<")){
-			text = text.substring(0, text.indexOf("<"));
+			//text = text.substring(0, text.indexOf("<"));
 			print = false;
 		}else if(text.contains(">")){
-			text = text.substring(0, text.indexOf(">"));
+			//text = text.substring(0, text.indexOf(">"));
 			print = false;
 		}else if(text.contains("=") && !text.contains(":=")){
-			text = text.substring(0, text.indexOf("="));
+			//text = text.substring(0, text.indexOf("="));
 			print = false;
 		}else if(text.contains("*")){
-			text = text.substring(0, text.indexOf("*"));
+			//text = text.substring(0, text.indexOf("*"));
 			print = false;
 		}else if(text.contains("/")){
-			text = text.substring(0, text.indexOf("/"));
+			//text = text.substring(0, text.indexOf("/"));
 			print = false;
 		}else if(text.contains("+")){
-			text = text.substring(0, text.indexOf("+"));
+			//text = text.substring(0, text.indexOf("+"));
 			print = false;
 		}else if(text.contains("-")){
-			text = text.substring(0, text.indexOf("-"));
+			//text = text.substring(0, text.indexOf("-"));
 			print = false;
 		}
 		
 		if(print)
 			System.out.print(text);
 
-		System.out.println("Parent of " + ctx.getText() + ": " + ctx.getParent().getText());
+		//System.out.println("Parent of " + ctx.getText() + ": " + ctx.getParent().getText());
 	}
 	/**
 	 * {@inheritDoc}
@@ -312,7 +337,7 @@ public class kcListener extends knightCodeBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void enterDecision(knightCodeParser.DecisionContext ctx) { 
-		System.out.print("if(");
+		//System.out.print("if(");
 	}
 	/**
 	 * {@inheritDoc}
@@ -328,7 +353,7 @@ public class kcListener extends knightCodeBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void enterLoop(knightCodeParser.LoopContext ctx) { 
-		System.out.println(ctx.getText());
+		//System.out.println(ctx.getText());
 	}
 	/**
 	 * {@inheritDoc}
