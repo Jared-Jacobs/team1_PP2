@@ -19,3 +19,5 @@ grammar file. Compiled the grammar file. Encountered some misstypes from myself 
 10/27/19 | Jared Jacobs | 1 Hour | Created the build.xml and added javadoc headers  
 
 10/27/19 | Joshua Coffey | 3 Hours | Overhauled kcListener.java and got everything fully functional 
+
+10/28/19 | Joshua Coffey | 20 Minutes | Cleaning up kcListener and writing/fixing some comments

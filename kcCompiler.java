@@ -1,5 +1,5 @@
 /**
-* Description of this class.
+* Serves as the main class for the project
 * @author Jared Jacobs
 * @author Josh Coffey
 * @author Stephen Love
