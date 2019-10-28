@@ -14,6 +14,7 @@ import org.antlr.v4.runtime.tree.*;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.io.*;
 
 public class kcCompiler {
     public static void main(String[] args) throws Exception {
@@ -36,25 +37,30 @@ public class kcCompiler {
 			is = new FileInputStream(inputFile);
 			
 		ANTLRInputStream input = new ANTLRInputStream(is); 
-			knightCodeLexer lexer = new knightCodeLexer(input); 
-			CommonTokenStream tokens = new CommonTokenStream(lexer); 
-			knightCodeParser parser = new knightCodeParser(tokens); 
+		knightCodeLexer lexer = new knightCodeLexer(input); 
+		CommonTokenStream tokens = new CommonTokenStream(lexer); 
+		knightCodeParser parser = new knightCodeParser(tokens); 
 			
 		parser.removeErrorListeners();
 
 		parser.addErrorListener(new ErrorListener());
 
-		ParseTree tree = parser.file(); // start at the program label
+		ParseTree tree = parser.file(); // start at the file label
 
 		ParseTreeWalker walker = new ParseTreeWalker();
 			
-		kcListener listener = new kcListener();
+		kcListener listener = new kcListener(outputFile);
 		walker.walk(listener, tree);
 		
 		javaCode = listener.getOutputCode();
 		
-		for(int i = 0; i < javaCode.size(); i++) {
-			System.out.println(javaCode.get(i));
+		try(Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(outputFile), "utf-8"))) {
+			for(int i = 0; i < javaCode.size(); i++) {
+				writer.write(javaCode.get(i));
+				writer.write("\n");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}//end main
 }//end class

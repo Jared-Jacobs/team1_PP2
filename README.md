@@ -17,3 +17,5 @@ grammar file. Compiled the grammar file. Encountered some misstypes from myself 
 10/25/19 | Joshua Coffey | 4 Hours | Continued work on kcListener, got everything but the if's and while's working properly 
 
 10/27/19 | Jared Jacobs | 1 Hour | Created the build.xml and added javadoc headers  
+
+10/27/19 | Joshua Coffey | 3 Hours | Overhauled kcListener.java and got everything fully functional 

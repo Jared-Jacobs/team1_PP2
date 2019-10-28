@@ -4,7 +4,8 @@ DECLARE
 	INTEGER x; 
 	INTEGER y; 
 	INTEGER z;
- 
+
+#this is a comment 
 BEGIN
 
 	SET x := 10; 
