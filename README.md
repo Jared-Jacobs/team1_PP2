@@ -20,4 +20,4 @@ grammar file. Compiled the grammar file. Encountered some misstypes from myself 
 
 10/27/19 | Joshua Coffey | 3 Hours | Overhauled kcListener.java and got everything fully functional 
 
-10/28/19 | Joshua Coffey | 20 Minutes | Cleaning up kcListener and writing/fixing some comments
+10/28/19 | Joshua Coffey | 20 Minutes | Cleaned up kcListener and wrote/fixed some comments
