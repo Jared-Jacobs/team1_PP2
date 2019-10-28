@@ -6,7 +6,7 @@ Project Log:
 10/6/19 |  Jared Jacobs | 2 Hours | Created this Github repository added Josh and Stephen to it and created the
 grammar file. Compiled the grammar file. Encountered some misstypes from myself and fixed them aswell.
 
-10/16/19 | Jared Jacobs | 2  Hours | Started working on the skeleton of errorListener and kcListener
+10/16/19 | Jared Jacobs and Stephen Love | 2  Hours | Started working on the skeleton of errorListener and kcListener still need to figure out alot to get it working
 
 10/22/19 | Jared Jacobs | 1 Hour | Added some stuff to errorListener and kcListener almost done with errorListener
 
