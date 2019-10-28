@@ -4,10 +4,9 @@ DECLARE
 	INTEGER x; 
 	INTEGER y; 
 	INTEGER z;
-
-#this is a comment 
+ 
 BEGIN
-
+	#this is a comment
 	SET x := 10; 
 	SET y := 12; 
 	SET z := x + y; 
